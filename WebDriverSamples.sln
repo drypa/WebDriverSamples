@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C9A6A7B7-735E-4BB7-B325-272E37AE7439}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8F7AA1F1-0A22-477A-A696-4E407644C53B}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebDriverSamples", "src\WebDriverSamples\WebDriverSamples.xproj", "{714ACAB5-6DFB-47A5-9D1B-9BC28B688598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "src\AcceptanceTests\AcceptanceTests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{714ACAB5-6DFB-47A5-9D1B-9BC28B688598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714ACAB5-6DFB-47A5-9D1B-9BC28B688598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714ACAB5-6DFB-47A5-9D1B-9BC28B688598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714ACAB5-6DFB-47A5-9D1B-9BC28B688598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{714ACAB5-6DFB-47A5-9D1B-9BC28B688598} = {C9A6A7B7-735E-4BB7-B325-272E37AE7439}
+		{8EDF4429-251A-416D-BB68-93F227191BCF} = {C9A6A7B7-735E-4BB7-B325-272E37AE7439}
+	EndGlobalSection
+EndGlobal
