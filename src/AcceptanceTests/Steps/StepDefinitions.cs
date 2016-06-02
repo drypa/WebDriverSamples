@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
 
 namespace AcceptanceTests.Steps
@@ -9,34 +9,38 @@ namespace AcceptanceTests.Steps
     [Binding]
     public sealed class StepDefinitions
     {
-        // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
+        private IWebDriver webDriver = new ChromeDriver(@"D:\WebDrivers\");
+        private string siteUrl = "http://localhost:16729/";
+        private string loginPage = "Account/Login";
 
-        [Given("I have entered (.*) into the calculator")]
-        public void GivenIHaveEnteredSomethingIntoTheCalculator(int number)
+        [Given(@"Application is opened")]
+        public void GivenApplicationIsOpened()
         {
-            //TODO: implement arrange (precondition) logic
-            // For storing and retrieving scenario-specific data see http://go.specflow.org/doc-sharingdata 
-            // To use the multiline text or the table argument of the scenario,
-            // additional string/Table parameters can be defined on the step definition
-            // method. 
-
-            ScenarioContext.Current.Pending();
+            webDriver.Navigate().GoToUrl(siteUrl);
         }
 
-        [When("I press add")]
-        public void WhenIPressAdd()
-        {
-            //TODO: implement act (action) logic
 
-            ScenarioContext.Current.Pending();
+        [When(@"I enter by user name ""(.*)"" and password ""(.*)""")]
+        public void WhenIEnterUserNameAndPassword(string login, string password)
+        {
+            webDriver.Navigate().GoToUrl(siteUrl + loginPage);
+            var loginInput = webDriver.FindElement(By.Id("Email"));
+            var passwordInput = webDriver.FindElement(By.Id("Password"));
+
+            loginInput.SendKeys(login);
+            passwordInput.SendKeys(password);
+
+            var loginButton = webDriver.FindElement(By.CssSelector("[type='submit']"));
+            loginButton.Click();
         }
 
-        [Then("the result should be (.*) on the screen")]
-        public void ThenTheResultShouldBe(int result)
+        [Then(@"I see ""(.*)""")]
+        public void ThenISee(string text)
         {
-            //TODO: implement assert (verification) logic
-
-            ScenarioContext.Current.Pending();
+            var textElement = webDriver.FindElement(By.XPath($"//*[contains(text(),'{text}')]"));
+            Assert.IsTrue(textElement.Displayed);
         }
+
+
     }
 }

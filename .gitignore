@@ -1,6 +1,7 @@
 .vs
 .suo
 *.user
+*.feature.cs
 node_modules
 obj
 bin
