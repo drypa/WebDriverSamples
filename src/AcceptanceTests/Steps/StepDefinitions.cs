@@ -35,7 +35,7 @@ namespace AcceptanceTests.Steps
         [When(@"I enter by user name ""(.*)"" and password ""(.*)""")]
         public void WhenIEnterUserNameAndPassword(string login, string password)
         {
-            webDriver.Navigate().GoToUrl(siteUrl + loginPage);
+            WhenIPressButton("Log in");
             IWebElement loginInput = webDriver.FindElement(By.Id("Email"));
             IWebElement passwordInput = webDriver.FindElement(By.Id("Password"));
 
@@ -44,6 +44,14 @@ namespace AcceptanceTests.Steps
 
             IWebElement loginButton = webDriver.FindElement(By.CssSelector("[type='submit']"));
             loginButton.Click();
+        }
+
+        [When(@"I press button ""(.*)""")]
+        [When(@"I press link ""(.*)""")]
+        public void WhenIPressButton(string buttonName)
+        {
+            IWebElement button = webDriver.FindElement(By.PartialLinkText(buttonName));
+            button.Click();
         }
     }
 }
