@@ -9,38 +9,41 @@ namespace AcceptanceTests.Steps
     [Binding]
     public sealed class StepDefinitions
     {
-        private IWebDriver webDriver = new ChromeDriver(@"D:\WebDrivers\");
-        private string siteUrl = "http://localhost:16729/";
-        private string loginPage = "Account/Login";
+        private readonly string loginPage = "Account/Login";
+        private readonly string siteUrl = "http://localhost:16729/";
+        private readonly IWebDriver webDriver = new ChromeDriver(@"D:\WebDrivers\");
 
-        [Given(@"Application is opened")]
-        public void GivenApplicationIsOpened()
+        [BeforeScenario("ApplicationIsOpened")]
+        public void ApplicationIsOpened()
         {
             webDriver.Navigate().GoToUrl(siteUrl);
         }
 
-
-        [When(@"I enter by user name ""(.*)"" and password ""(.*)""")]
-        public void WhenIEnterUserNameAndPassword(string login, string password)
+        [AfterScenario]
+        public void TearDown()
         {
-            webDriver.Navigate().GoToUrl(siteUrl + loginPage);
-            var loginInput = webDriver.FindElement(By.Id("Email"));
-            var passwordInput = webDriver.FindElement(By.Id("Password"));
-
-            loginInput.SendKeys(login);
-            passwordInput.SendKeys(password);
-
-            var loginButton = webDriver.FindElement(By.CssSelector("[type='submit']"));
-            loginButton.Click();
+            webDriver.Quit();
         }
 
         [Then(@"I see ""(.*)""")]
         public void ThenISee(string text)
         {
-            var textElement = webDriver.FindElement(By.XPath($"//*[contains(text(),'{text}')]"));
+            IWebElement textElement = webDriver.FindElement(By.XPath($"//*[contains(text(),'{text}')]"));
             Assert.IsTrue(textElement.Displayed);
         }
 
+        [When(@"I enter by user name ""(.*)"" and password ""(.*)""")]
+        public void WhenIEnterUserNameAndPassword(string login, string password)
+        {
+            webDriver.Navigate().GoToUrl(siteUrl + loginPage);
+            IWebElement loginInput = webDriver.FindElement(By.Id("Email"));
+            IWebElement passwordInput = webDriver.FindElement(By.Id("Password"));
 
+            loginInput.SendKeys(login);
+            passwordInput.SendKeys(password);
+
+            IWebElement loginButton = webDriver.FindElement(By.CssSelector("[type='submit']"));
+            loginButton.Click();
+        }
     }
 }

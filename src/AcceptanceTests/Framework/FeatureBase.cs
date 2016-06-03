@@ -6,9 +6,9 @@ namespace AcceptanceTests.Framework
 {
     public abstract class FeatureBase
     {
-        protected void WaitDocumentLoaded(IWebDriver IeDriver)
+        protected void WaitDocumentLoaded(IWebDriver webDriver)
         {
-            ((IWait<IWebDriver>)new WebDriverWait(IeDriver, TimeSpan.FromSeconds(30))).Until(JsIsDocumentLoaded);
+            ((IWait<IWebDriver>)new WebDriverWait(webDriver, TimeSpan.FromSeconds(30))).Until(JsIsDocumentLoaded);
         }
 
         private bool JsIsDocumentLoaded(IWebDriver driver)
