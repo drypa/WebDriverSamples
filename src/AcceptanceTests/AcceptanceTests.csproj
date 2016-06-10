@@ -55,7 +55,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\LoginWithPageObject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginWithPageObject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\BasePage.cs" />
     <Compile Include="Framework\FeatureBase.cs" />
+    <Compile Include="Framework\StartPage.cs" />
+    <Compile Include="Framework\LoginPage.cs" />
+    <Compile Include="Steps\PageObjectStepDefinitions.cs" />
     <Compile Include="Steps\StepDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,6 +73,10 @@
     <None Include="Features\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\LoginWithPageObject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LoginWithPageObject.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
