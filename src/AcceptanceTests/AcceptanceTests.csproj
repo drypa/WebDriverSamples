@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="Framework\BasePage.cs" />
     <Compile Include="Framework\FeatureBase.cs" />
+    <Compile Include="Framework\HomePage.cs" />
     <Compile Include="Framework\StartPage.cs" />
     <Compile Include="Framework\LoginPage.cs" />
     <Compile Include="Steps\PageObjectStepDefinitions.cs" />

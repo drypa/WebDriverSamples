@@ -15,6 +15,7 @@ namespace AcceptanceTests.Steps
         private string baseUrl = "http://localhost:16729/";
 
         public LoginPage loginPage;
+        public HomePage homePage;
 
         [Given(@"I am on start page")]
         public void GivenIAmOnStartPage()
@@ -52,13 +53,13 @@ namespace AcceptanceTests.Steps
         [When(@"I press login button")]
         public void WhenIPressLoginButton()
         {
-            loginPage.loginButton.Click();
+            homePage = loginPage.PressLoginButton();
         }
 
         [Then(@"I should be on home page")]
         public void ThenIShouldBeOnHomePage()
         {
-            //ScenarioContext.Current.Pending();
+            Assert.IsTrue(homePage?.isDisplayed());
         }
 
         [AfterScenario]

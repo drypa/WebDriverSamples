@@ -14,16 +14,10 @@ namespace AcceptanceTests.Framework
         [FindsBy(How = How.CssSelector, Using = "[type='submit']")]
         public IWebElement loginButton;
 
-        private readonly string pageTitle = "Log in - WebDriverSamples";
-
-        public bool isDisplayed()
-        {
-            return Driver.Title == pageTitle;
-        }
-
         public LoginPage(IWebDriver webDriver)
+            :base(webDriver)
         {
-            Driver = webDriver;
+            PageTitle = "Log in - WebDriverSamples";
         }
         public LoginPage TypeLogin(string login)
         {
@@ -37,12 +31,13 @@ namespace AcceptanceTests.Framework
             return this;
         }
 
-        public LoginPage PressLoginButton()
+        public HomePage PressLoginButton()
         {
             loginButton.Click();
-            //PageFactory.InitElements(Driver,)
+            var homePage = new HomePage(Driver);
+            PageFactory.InitElements(Driver, homePage);
 
-            return this;
+            return homePage;
         }
     }
 }

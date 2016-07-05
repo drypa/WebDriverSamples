@@ -19,8 +19,9 @@ namespace AcceptanceTests.Framework
         public IWebElement contactLink;
 
         public StartPage(IWebDriver webDriver)
+            :base(webDriver)
         {
-            Driver = webDriver;
+            PageTitle = "Home Page - WebDriverSamples";
         }
 
         public StartPage GoToHome()
