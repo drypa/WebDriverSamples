@@ -6,13 +6,17 @@ namespace AcceptanceTests.Framework
     public sealed class LoginPage: BasePage
     {
         [FindsBy(How = How.Id, Using = "Email")]
-        public IWebElement userNameTextField;
+        public IWebElement UserNameTextField { get; set; }
 
         [FindsBy(How = How.Id, Using = "Password")]
-        public IWebElement passwordTextField;
+        public IWebElement PasswordTextField { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[type='submit']")]
-        public IWebElement loginButton;
+        public IWebElement LoginButton { get; set; }
+
+
+        [FindsBy(How = How.CssSelector, Using = ".validation-summary-errors")]
+        public IWebElement ValidationErrors { get; set; }
 
         public LoginPage(IWebDriver webDriver)
             :base(webDriver)
@@ -21,19 +25,19 @@ namespace AcceptanceTests.Framework
         }
         public LoginPage TypeLogin(string login)
         {
-            userNameTextField.SendKeys(login);
+            UserNameTextField.SendKeys(login);
             return this;
         }
 
         public LoginPage TypePassword(string password)
         {
-            passwordTextField.SendKeys(password);
+            PasswordTextField.SendKeys(password);
             return this;
         }
 
         public HomePage PressLoginButton()
         {
-            loginButton.Click();
+            LoginButton.Click();
             var homePage = new HomePage(Driver);
             PageFactory.InitElements(Driver, homePage);
 

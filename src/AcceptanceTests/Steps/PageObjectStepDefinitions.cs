@@ -14,8 +14,8 @@ namespace AcceptanceTests.Steps
         private readonly IWebDriver webDriver = new ChromeDriver(@"D:\WebDrivers\");
         private string baseUrl = "http://localhost:16729/";
 
-        public LoginPage loginPage;
-        public HomePage homePage;
+        private LoginPage loginPage;
+        private HomePage homePage;
 
         [Given(@"I am on start page")]
         public void GivenIAmOnStartPage()
@@ -41,13 +41,13 @@ namespace AcceptanceTests.Steps
         [When(@"I enter login ""(.*)""")]
         public void WhenIEnterLogin(string login)
         {
-            loginPage.userNameTextField.SendKeys(login);
+            loginPage.UserNameTextField.SendKeys(login);
         }
 
         [When(@"I enter password ""(.*)""")]
         public void WhenIEnterPassword(string password)
         {
-            loginPage.passwordTextField.SendKeys(password);
+            loginPage.PasswordTextField.SendKeys(password);
         }
 
         [When(@"I press login button")]
@@ -65,8 +65,23 @@ namespace AcceptanceTests.Steps
         [AfterScenario]
         public void TearDown()
         {
-            webDriver.Quit();
+           webDriver.Quit();
         }
 
+        [Given(@"I am on login page")]
+        public void GivenIAmOnLoginPage()
+        {
+            webDriver.Navigate().GoToUrl("http://localhost:16729/Account/Login");
+
+            loginPage = new LoginPage(webDriver);
+            PageFactory.InitElements(webDriver, loginPage);
+        }
+
+        [Then(@"I see login error ""(.*)""")]
+        public void ThenISeeLoginError(string errorText)
+        {
+            Assert.IsTrue(loginPage.ValidationErrors.Displayed);
+            Assert.IsTrue(loginPage.ValidationErrors.Text.Contains(errorText));
+        }
     }
 }
