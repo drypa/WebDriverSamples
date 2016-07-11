@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
@@ -12,7 +11,7 @@ namespace AcceptanceTests.Steps
     {
         private readonly string loginPage = "Account/Login";
         private readonly string siteUrl = "http://localhost:16729/";
-        private IWebDriver webDriver;// = new RemoteWebDriver(new Uri(@"http://10.0.2.200:4444/wd/hub"), DesiredCapabilities.Firefox());
+        private IWebDriver webDriver;
 
         [BeforeScenario("ApplicationIsOpened")]
         public void ApplicationIsOpened()

@@ -2,6 +2,9 @@
 .suo
 *.user
 *.feature.cs
+*.exe
+*.zip
+*.jar
 node_modules
 obj
 bin

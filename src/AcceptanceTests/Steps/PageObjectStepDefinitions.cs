@@ -13,7 +13,7 @@ namespace AcceptanceTests.Steps
     public sealed class PageObjectStepDefinitions
     {
         private StartPage startPage;
-        private IWebDriver webDriver;// = new RemoteWebDriver(new Uri( @"http://10.0.2.200:4444/wd/hub"),DesiredCapabilities.Firefox());
+        private IWebDriver webDriver;
         private string baseUrl = "http://localhost:16729/";
 
         private LoginPage loginPage;
