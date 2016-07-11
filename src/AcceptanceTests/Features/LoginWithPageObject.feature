@@ -1,4 +1,5 @@
-﻿Feature: LoginWithPageObject
+﻿@Remote
+Feature: LoginWithPageObject
 	Login Page tests
 
 Scenario: Login on existing Account

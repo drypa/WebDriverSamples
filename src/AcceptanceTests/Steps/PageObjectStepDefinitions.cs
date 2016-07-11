@@ -1,7 +1,9 @@
-﻿using AcceptanceTests.Framework;
+﻿using System;
+using AcceptanceTests.Framework;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
 
@@ -11,11 +13,24 @@ namespace AcceptanceTests.Steps
     public sealed class PageObjectStepDefinitions
     {
         private StartPage startPage;
-        private readonly IWebDriver webDriver = new ChromeDriver(@"D:\WebDrivers\");
+        private IWebDriver webDriver;// = new RemoteWebDriver(new Uri( @"http://10.0.2.200:4444/wd/hub"),DesiredCapabilities.Firefox());
         private string baseUrl = "http://localhost:16729/";
 
         private LoginPage loginPage;
         private HomePage homePage;
+
+        [BeforeScenario("Remote")]
+        public void Before()
+        {
+            webDriver = new RemoteWebDriver(new Uri(@"http://10.0.2.200:4444/wd/hub"), DesiredCapabilities.Firefox());
+        }
+
+        [AfterScenario("Remote")]
+        public void After()
+        {
+            webDriver.Quit();
+        }
+
 
         [Given(@"I am on start page")]
         public void GivenIAmOnStartPage()
@@ -60,12 +75,6 @@ namespace AcceptanceTests.Steps
         public void ThenIShouldBeOnHomePage()
         {
             Assert.IsTrue(homePage?.isDisplayed());
-        }
-
-        [AfterScenario]
-        public void TearDown()
-        {
-           webDriver.Quit();
         }
 
         [Given(@"I am on login page")]
