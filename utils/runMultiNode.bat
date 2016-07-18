@@ -1,0 +1,1 @@
+java -Dwebdriver.chrome.driver=chromedriver.exe -Dwebdriver.ie.driver=IEDriverServer.exe -jar selenium-server-standalone-2.53.1.jar -role webdriver -hub http://localhost:4444/grid/register -port 5559 -browser browserName=chrome -browser browserName=firefox  -browser browserName="internet explorer"
