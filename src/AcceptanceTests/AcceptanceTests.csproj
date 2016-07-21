@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginWithPageObject.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Tests\LoginTests.cs" />
     <Compile Include="Framework\BasePage.cs" />
     <Compile Include="Framework\FeatureBase.cs" />
     <Compile Include="Framework\HomePage.cs" />
@@ -81,7 +82,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
