@@ -36,7 +36,24 @@ namespace AcceptanceTests.Features.Tests
             driver.WaitDocumentLoaded();
 
             driver.FindElement(By.CssSelector("#sfdiv input:first-of-type")).SendKeys("новости");
+
             driver.FindElement(By.ClassName("lsb")).Click();
+
+            driver.WaitElementIsPresent(GetContainsTextSelector("Другие новости по запросу новости"));
+
+            FindElementByText("Другие новости по запросу новости").Click();
+
+        }
+
+        private By GetContainsTextSelector(string text)
+        {
+            return By.XPath(String.Format(@"//*[text()[contains(.,""{0}"")]]", text));
+        }
+
+
+        private IWebElement FindElementByText(string text)
+        {
+            return driver.FindElement(GetContainsTextSelector(text));
         }
     }
 }

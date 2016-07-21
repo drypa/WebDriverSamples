@@ -11,6 +11,13 @@ namespace AcceptanceTests.Framework
             ((IWait<IWebDriver>)new WebDriverWait(webDriver, TimeSpan.FromSeconds(30))).Until(JsIsDocumentLoaded);
         }
 
+        public static IWebElement WaitElementIsPresent(this IWebDriver driver, By selector, int secondsToWait=10)
+        {
+            WebDriverWait wait = new WebDriverWait(driver,TimeSpan.FromSeconds(secondsToWait));
+            return wait.Until(ExpectedConditions.ElementIsVisible(selector));
+        }
+
+
         private static bool JsIsDocumentLoaded(IWebDriver driver)
         {
             try
