@@ -60,7 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginWithPageObject.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\Tests\LoginTests.cs" />
+    <Compile Include="Features\Tests\GoogleTests.cs" />
     <Compile Include="Framework\BasePage.cs" />
     <Compile Include="Framework\FeatureBase.cs" />
     <Compile Include="Framework\HomePage.cs" />

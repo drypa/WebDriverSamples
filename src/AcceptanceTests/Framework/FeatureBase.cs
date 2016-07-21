@@ -4,14 +4,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AcceptanceTests.Framework
 {
-    public abstract class FeatureBase
+    public static class FeatureBase
     {
-        protected void WaitDocumentLoaded(IWebDriver webDriver)
+        public static void WaitDocumentLoaded(this IWebDriver webDriver)
         {
             ((IWait<IWebDriver>)new WebDriverWait(webDriver, TimeSpan.FromSeconds(30))).Until(JsIsDocumentLoaded);
         }
 
-        private bool JsIsDocumentLoaded(IWebDriver driver)
+        private static bool JsIsDocumentLoaded(IWebDriver driver)
         {
             try
             {
