@@ -31,17 +31,24 @@ namespace AcceptanceTests.Features.Tests
         [Test]
         public void TestSearchQuery()
         {
+            var searchText = "новости";
+
+
             Assert.IsNotNull(driver);
             driver.Navigate().GoToUrl("http://www.google.com/");
             driver.WaitDocumentLoaded();
 
-            driver.FindElement(By.CssSelector("#sfdiv input:first-of-type")).SendKeys("новости");
+            driver.FindElement(By.CssSelector("#sfdiv input:first-of-type")).SendKeys(searchText);
 
             driver.FindElement(By.ClassName("lsb")).Click();
 
-            driver.WaitElementIsPresent(GetContainsTextSelector("Другие новости по запросу новости"));
+            var otherNews = driver.WaitElementIsPresent(GetContainsTextSelector("Другие новости по запросу новости"));
 
-            FindElementByText("Другие новости по запросу новости").Click();
+            otherNews.Click();
+
+            var encodedRequest = Uri.EscapeUriString(searchText);
+            
+            driver.WaitElementIsPresent(By.XPath($"//*[@data-async-context='query:{encodedRequest}']"));
 
         }
 
