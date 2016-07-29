@@ -4,6 +4,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
+[assembly: Parallelizable(ParallelScope.Fixtures)]
+
 namespace AcceptanceTests.Steps
 {
     [Binding]
