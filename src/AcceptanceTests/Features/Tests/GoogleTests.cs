@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Drawing.Imaging;
+using System.IO;
 using AcceptanceTests.Framework;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace AcceptanceTests.Features.Tests
 {
@@ -23,7 +27,17 @@ namespace AcceptanceTests.Features.Tests
         [TearDown]
         public void TearDown()
         {
+            if (Equals(TestContext.CurrentContext.Result.Outcome, ResultState.Error))
+            {
+                driver.TakeScreenshot().SaveAsFile(Path.Combine(@"C:\screenshots\", GetScreenshotNameForTest(TestContext.CurrentContext.Test)),ImageFormat.Png);
+            }
+
             driver.Quit();
+        }
+
+        private string GetScreenshotNameForTest(TestContext.TestAdapter test)
+        {
+            return $"{test.ClassName}_{test.MethodName}_{DateTime.Now.ToString("yyyyMMhh_HHmmss")}.png";
         }
 
         private IWebDriver driver;
@@ -32,7 +46,6 @@ namespace AcceptanceTests.Features.Tests
         public void TestSearchQuery()
         {
             var searchText = "новости";
-
 
             Assert.IsNotNull(driver);
             driver.Navigate().GoToUrl("http://www.google.com/");
